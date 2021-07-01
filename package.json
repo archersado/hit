@@ -1,7 +1,7 @@
 {
-  "name": "@ali/hlang-hit",
+  "name": "@hlang/hit",
   "version": "1.0.0",
-  "description": "",
+  "description": "a light expression tools for hlang",
   "main": "lib/index.js",
   "type": "lib/index.d.ts",
   "scripts": {
@@ -11,9 +11,6 @@
     "watch": "tsc -p tsconfig.json -w",
     "prepublishOnly": "tnpm run build",
     "precommit": "lint-staged"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
   },
   "lint-staged": {
     "**/*.ts": [
@@ -30,9 +27,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.alibaba-inc.com:hset/hit.git"
+    "url": "git@github.com:archersado/hit.git"
   },
-  "author": "gongjian.gj",
+  "author": "archersdao",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^26.0.23",
