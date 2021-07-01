@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1625143643114" clover="3.2.0">
-  <project timestamp="1625143643114" name="All files">
+<coverage generated="1625147679248" clover="3.2.0">
+  <project timestamp="1625147679248" name="All files">
     <metrics statements="177" coveredstatements="156" conditionals="65" coveredconditionals="49" methods="42" coveredmethods="28" elements="284" coveredelements="233" complexity="0" loc="177" ncloc="177" packages="1" files="4" classes="4"/>
-    <file name="calculation.ts" path="/Users/archersado/workspace/hit/src/calculation.ts">
+    <file name="calculation.ts" path="/Users/archersado/workspace/mygit/hit/src/calculation.ts">
       <metrics statements="73" coveredstatements="56" conditionals="33" coveredconditionals="23" methods="21" coveredmethods="9"/>
       <line num="1" count="1" type="stmt"/>
       <line num="23" count="1" type="stmt"/>
@@ -78,7 +78,7 @@
       <line num="151" count="20" type="stmt"/>
       <line num="153" count="0" type="cond" truecount="0" falsecount="2"/>
     </file>
-    <file name="expression.ts" path="/Users/archersado/workspace/hit/src/expression.ts">
+    <file name="expression.ts" path="/Users/archersado/workspace/mygit/hit/src/expression.ts">
       <metrics statements="63" coveredstatements="63" conditionals="20" coveredconditionals="19" methods="9" coveredmethods="9"/>
       <line num="2" count="1" type="stmt"/>
       <line num="5" count="1" type="cond" truecount="2" falsecount="0"/>
@@ -144,7 +144,7 @@
       <line num="105" count="19" type="stmt"/>
       <line num="108" count="21" type="stmt"/>
     </file>
-    <file name="index.ts" path="/Users/archersado/workspace/hit/src/index.ts">
+    <file name="index.ts" path="/Users/archersado/workspace/mygit/hit/src/index.ts">
       <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
@@ -160,7 +160,7 @@
       <line num="22" count="14" type="stmt"/>
       <line num="25" count="14" type="stmt"/>
     </file>
-    <file name="param_parser.ts" path="/Users/archersado/workspace/hit/src/param_parser.ts">
+    <file name="param_parser.ts" path="/Users/archersado/workspace/mygit/hit/src/param_parser.ts">
       <metrics statements="28" coveredstatements="24" conditionals="12" coveredconditionals="7" methods="10" coveredmethods="8"/>
       <line num="1" count="1" type="stmt"/>
       <line num="5" count="1" type="cond" truecount="2" falsecount="0"/>
