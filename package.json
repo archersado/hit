@@ -1,5 +1,5 @@
 {
-  "name": "hit",
+  "name": "@hset/hit",
   "version": "1.0.0",
   "description": "a light expression tools for hlang",
   "main": "lib/index.js",
