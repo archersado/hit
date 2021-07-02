@@ -130,10 +130,11 @@ export default class Calculation {
         return this.operators;
     }
 
-    add(operator: string, calculate: CalculateFunc) {
+    add(operator: string, priority: number, calculate: CalculateFunc) {
         if (!this.calculateMap.has(operator)) {
             this.calculateMap.set(operator, calculate);
         }
+        this.operators[operator] = priority;
         this.calculateMap.set(operator, calculate);
     }
 
