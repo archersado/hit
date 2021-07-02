@@ -1,4 +1,4 @@
-# hit
+# Hit
 a light expression tools for hlang
 
 # install
@@ -7,7 +7,7 @@ a light expression tools for hlang
 npm i @hset/hit
 ```
 
-# how to use 
+# How to use 
 
 ``` typescript
 import Hit, { ParamParser, Calculation, ParamPattern } from '@hset/hit';
@@ -23,7 +23,7 @@ const result = hit.run('1 * (2 * ({{a.b}} + 1))', {a: {b:1}}, ParamPattern.MUSTA
 expect(result).toEqual(4);
 ```
 
-# about param pattern
+# Use param pattern
 
 ParamParser support two param pattern by default
 
@@ -48,7 +48,7 @@ parser.add(ParamPattern.MUSTACHE, function (template: string, context: Object) {
 }); 
 ```
 
-# about calculation
+# Use calculation
 
 Calculation support serveral calculations by default, including:
 
@@ -86,7 +86,7 @@ calculation.add('+', 14, function(left, right) {
 }); 
 ```
 
-# about calculation priority
+# About calculation priority
 
 calculation with priority in the expression are supported, you can use () in the expression. Nested blocks are also supported.
 
