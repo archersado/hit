@@ -23,7 +23,7 @@ const result = hit.run('1 * (2 * ({{a.b}} + 1))', {a: {b:1}}, ParamPattern.MUSTA
 expect(result).toEqual(4);
 ```
 
-# Use param pattern
+# Use Param Pattern
 
 ParamParser support two param pattern by default
 
@@ -48,7 +48,7 @@ parser.add(ParamPattern.MUSTACHE, function (template: string, context: Object) {
 }); 
 ```
 
-# Use calculation
+# Use Calculation
 
 Calculation support serveral calculations by default, including:
 
@@ -86,7 +86,7 @@ calculation.add('+', 14, function(left, right) {
 }); 
 ```
 
-# About calculation priority
+# About Calculation Priority
 
 calculation with priority in the expression are supported, you can use () in the expression. Nested blocks are also supported.
 
