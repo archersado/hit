@@ -89,3 +89,10 @@ test("test logic expression 2", () => {
 
     expect(result).toEqual(false);
 });
+
+test("test logic expression 2", () => {
+    const result = hit.run('(1 + 5) * ((2 - 1) * ({{a.b}} + 1))', {a: {b:1}}, ParamPattern.MUSTACHE);
+
+    expect(result).toEqual(12);
+});
+

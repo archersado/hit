@@ -31,6 +31,7 @@ export default class Expression {
     }
 
     pushElement(element) {
+        if (!element) return;
         let param = element;
         if (is.string(element)) param = this.parser(element, this.context);
         this.elementStack.unshift(param);
@@ -49,6 +50,28 @@ export default class Expression {
         this.elementStack.unshift(result);
     }
 
+    parseBlock(start: number) {
+        let leftBlockCounts = 1;
+        let rightBlockCounts = 0;
+        let idx = start + 1;
+        const size = this.expression.length;
+        while (idx < size && rightBlockCounts < leftBlockCounts) {
+            let currentChar = this.expression.charAt(idx);
+            if (currentChar === Priority.LEFT_BLOCK) {
+                leftBlockCounts++;
+            } 
+            if (currentChar === Priority.RIGHT_BLOCK) {
+                rightBlockCounts++;
+            }
+            idx++;
+        }
+        if (idx === size && rightBlockCounts < leftBlockCounts) throw new Error(`表达式有误, 请检查!`);
+        const mainExpression = this.expression.substring(start, idx);
+
+        const childExpression = mainExpression.substr(1, mainExpression.length - 2);
+        return [mainExpression, childExpression];
+    }
+
     run() {
         let idx = 0;
         let currentParam = '';
@@ -57,21 +80,19 @@ export default class Expression {
 
         while (idx < expressionSize) {
             const currentChar = this.expression.charAt(idx);
+            console.log(idx, this.expression, currentParam, this.elementStack, this.operatorStack)
 
             if (currentChar === Priority.LEFT_BLOCK) {
-                this.operatorStack.unshift(currentParam);
-                const leftExpression = this.expression.substr(idx, expressionSize);
-                const matchBlock = leftExpression.match(/\((.+)\)/);
-                if (matchBlock) {
-                    const [origin, childExpression] = matchBlock;
-                    const result = new Expression(childExpression, this.context, this.calculation, this.parser).run();
+                currentParam && this.operatorStack.unshift(currentParam);
+                const [origin, childExpression] = this.parseBlock(idx);
+       
+                const result = new Expression(childExpression, this.context, this.calculation, this.parser).run();
 
-                    this.pushElement(result);
-                    this.expression = this.expression.replace(origin, '');
-                    currentParam = '';
-                    matchOperatorList = [];
-                    continue;
-                }
+                this.pushElement(result);
+                this.expression = this.expression.replace(origin, '');
+                currentParam = '';
+                matchOperatorList = [];
+                continue;
             }
             
             if (matchOperatorList.length > 0) {
@@ -99,7 +120,7 @@ export default class Expression {
             }
             ++idx;
         }
-        if (currentParam) this.pushElement(currentParam);
+        this.pushElement(currentParam);
         // 清空栈
         while(this.operatorStack.length > 0) {
             this.compute();
