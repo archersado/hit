@@ -1,6 +1,6 @@
 {
   "name": "@hset/hit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a light expression tools for hlang",
   "main": "lib/index.js",
   "type": "lib/index.d.ts",
