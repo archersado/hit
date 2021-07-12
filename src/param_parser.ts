@@ -47,8 +47,6 @@ export default class ParamParser {
             });
 
             const [ onlyValue ] = argValueList;
-            console.log(template, 'template')
-            console.log(ret, onlyValue, typeof ret, typeof onlyValue, argValueList, 'ret')
             if (argValueList.length === 1) {
                 if (ret == onlyValue) return onlyValue;
                 if (isBoolean(ret, onlyValue)) return onlyValue;
