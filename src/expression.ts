@@ -12,11 +12,11 @@ export default class Expression {
     elementStack: any[];
     expression: string;
     parser: ParserFunc;
-    context: {[key: string]: any};
+    context: object;
     calculation: Calculation;
     operators: {[key: string]: number};
 
-    constructor(expression: string, context: {[key: string]: any}, calculation: Calculation, parser: ParserFunc) {
+    constructor(expression: string, context: object, calculation: Calculation, parser: ParserFunc) {
         this.context = context;
         this.operatorStack = [];
         this.elementStack = [];
@@ -34,6 +34,7 @@ export default class Expression {
         if (!element) return;
         let param = element;
         if (is.string(element)) param = this.parser(element, this.context);
+
         this.elementStack.unshift(param);
     }
 
@@ -80,7 +81,6 @@ export default class Expression {
 
         while (idx < expressionSize) {
             const currentChar = this.expression.charAt(idx);
-            console.log(idx, this.expression, currentParam, this.elementStack, this.operatorStack)
 
             if (currentChar === Priority.LEFT_BLOCK) {
                 currentParam && this.operatorStack.unshift(currentParam);

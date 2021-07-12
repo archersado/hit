@@ -17,7 +17,7 @@ export default class Hit {
         return this;
     }
 
-    run(template: string, context: {[key: string]: any}, parseType: string) {
+    run(template: string, context: object, parseType: string) {
         const parser = this.parserManager.getParser(parseType);
         const expression = new Expression(template, context, this.calculation, parser);
 

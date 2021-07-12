@@ -16,6 +16,23 @@ test("test mustache template param", () => {
     expect(result).toEqual(1);
 });
 
+test("complex MUSTACHE template expression", () => {
+    const result = hit.run('{a:{{a}}}', {a: 1}, ParamPattern.MUSTACHE);
+    const result2 = hit.run('{a:{{a.b.c}}}', {a: {b:{c: 2}}}, ParamPattern.MUSTACHE);
+
+    expect(result).toEqual('{a:1}');
+
+    expect(result2).toEqual('{a:2}');
+})
+
+test("complex Dollar template expression", () => {
+    const result = hit.run('{a:$a}', {a: 1}, ParamPattern.Dollar);
+    const result2 = hit.run('{a:$a.b.c}', {a: {b:{c: 2}}}, ParamPattern.Dollar);
+
+    expect(result).toEqual('{a:1}');
+    expect(result2).toEqual('{a:2}');
+})
+
 test("test mustache dollar param", () => {
     const result = hit.run('$a.b', {a: {b:2}}, ParamPattern.Dollar);
 
@@ -89,10 +106,3 @@ test("test logic expression 2", () => {
 
     expect(result).toEqual(false);
 });
-
-test("test logic expression 2", () => {
-    const result = hit.run('(1 + 5) * ((2 - 1) * ({{a.b}} + 1))', {a: {b:1}}, ParamPattern.MUSTACHE);
-
-    expect(result).toEqual(12);
-});
-

@@ -7,6 +7,10 @@ export enum ParamPattern {
     MUSTACHE = '{{}}'
 }
 
+function isBoolean (string, value) {
+    return (string === 'true' && value === true) ||  (string === 'false' && value === false)
+}
+
 
 export default class ParamParser {
     parserMap: Map<string, ParserFunc>    
@@ -16,19 +20,40 @@ export default class ParamParser {
             const isParam = namespace => /\$(.+)/.test(namespace);
             const trimed = template.trim();
             if (isParam(trimed)) {
-                return _get(context, trimed.replace(/\$/g, ''));
+                const argValueList: any[] = [];
+                const ret = trimed.replace(/\$([a-zA-Z0-9|._]+)/g, function(_, arg) {
+                    const value =  _get(context, arg);
+                    argValueList.push(value);
+                    return value;
+                });
+
+                const [ onlyValue ] = argValueList;
+                if (argValueList.length === 1) {
+                    if (ret == onlyValue) return onlyValue;
+                    if (isBoolean(ret, onlyValue)) return onlyValue;
+                }
+                return ret;
             }
 
             return template;
         });
         this.parserMap.set(ParamPattern.MUSTACHE, function (template: string, context: Object) {
-            const isParam = namespace => /^{{(.+)}}$/.test(namespace);
-            const trimed = template.trim();
-            if (isParam(trimed)) {
-                return _get(context, trimed.replace(/{|}/g, '').trim());
-            }
+            const argValueList: any[] = [];
+            const ret = template.trim().replace(/\{\{([a-zA-Z0-9|._]+)\}\}/g, function(_, arg){
+                const value = _get(context, arg);
+                argValueList.push(value);
 
-            return template;
+                return value;
+            });
+
+            const [ onlyValue ] = argValueList;
+            console.log(template, 'template')
+            console.log(ret, onlyValue, typeof ret, typeof onlyValue, argValueList, 'ret')
+            if (argValueList.length === 1) {
+                if (ret == onlyValue) return onlyValue;
+                if (isBoolean(ret, onlyValue)) return onlyValue;
+            }
+            return ret;
         });
         return this;
     }
